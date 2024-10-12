@@ -10,6 +10,7 @@ import com.example.notecollecter.exception.UserNotFoundException;
 import com.example.notecollecter.service.UserService;
 import com.example.notecollecter.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -68,5 +69,12 @@ public class UserServiceIMPL implements UserService {
         } else {
             throw new UserNotFoundException("User " + userId + " not found");
         }
+    }
+
+    @Override
+    public UserDetailsService userDetailsService() {
+        return userName ->
+                userDao.findByEmail(userName)
+                        .orElseThrow(()-> new UserNotFoundException("User Not Found"));
     }
 }

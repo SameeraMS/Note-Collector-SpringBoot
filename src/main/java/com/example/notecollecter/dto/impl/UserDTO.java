@@ -4,6 +4,8 @@ import com.example.notecollecter.dto.UserStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetailsService;
+
 import java.util.List;
 
 @AllArgsConstructor
